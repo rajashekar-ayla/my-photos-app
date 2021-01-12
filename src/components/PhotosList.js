@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import {RemovePhoto} from '../actions/RemovePhoto';
+import {RemovePhoto} from '../actions/RemovePhoto';
 import {fetchPhotos} from '../actions/fetchPhotos';
 
 class PhotosList extends Component {
@@ -26,7 +26,7 @@ class PhotosList extends Component {
                 <div><h3>Album Id: {photo.albumId}</h3></div>
                 <div><b>Id:</b> {photo.id}</div>
                 <div><b>Title:</b> {photo.title}</div>
-                <div><span className="remove-btn" onClick={() => this.RemovePhoto()}>Remove</span></div>
+                <div><span className="remove-btn" onClick={() => this.props.RemovePhotoFromList(photo.id)}>Remove</span></div>
               </div>
             </div>
           ))}
@@ -40,7 +40,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchPhotosList: fetchPhotos
+    fetchPhotosList: fetchPhotos,
+    RemovePhotoFromList: RemovePhoto
 }, dispatch)
 
   export default connect(mapStateToProps, mapDispatchToProps)(PhotosList);

@@ -14,7 +14,8 @@ export default (state=intialState, action) => {
     }
     case REMOVE_PHOTO:
       return {
-        ...state
+        ...state,
+        photos: state.photos.filter(({ id }) => id !== action.payload)
       }
     default:
       return state;
